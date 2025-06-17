@@ -58,27 +58,6 @@ ORDER BY
     total_movies DESC
 LIMIT 10;
 
--- range tahun 2000 - 2004 directors tersibuk
-SELECT 
-    d.id,
-    d.first_name,
-    d.last_name,
-    COUNT(md.movie_id) AS total_movies,
-    MIN(m.year) AS first_year,
-    MAX(m.year) AS last_year
-FROM 
-    directors d
-JOIN 
-    movies_directors md ON d.id = md.director_id
-JOIN 
-    movies m ON m.id = md.movie_id
-WHERE
-    m.year BETWEEN 2000 AND 2004
-GROUP BY 
-    d.id, d.first_name, d.last_name
-ORDER BY 
-    total_movies DESC;
-
 
 -- 9. Mendapatkan tahun tersibuk sepanjang masa
 SELECT 
@@ -91,6 +70,23 @@ GROUP BY
 ORDER BY
     total_movies DESC
 LIMIT 1;
+
+
+
+-- 10. Mendapatkan movies dengan genres yang dibuatkan menjadi 1 column
+-- (value dipisahkan dengan koma) dengan menggunakan string_agg
+SELECT 
+    m.id,
+    m.name,
+    STRING_AGG(mg.genre, ', ') AS genres
+FROM 
+    movies m
+LEFT JOIN 
+    movies_genres mg ON mg.movie_id = m.id
+GROUP BY 
+    m.id, m.name
+ORDER BY 
+    m.name;
 
 
 
