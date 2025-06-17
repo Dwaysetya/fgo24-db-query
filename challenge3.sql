@@ -77,7 +77,21 @@ WHERE
 GROUP BY 
     d.id, d.first_name, d.last_name
 ORDER BY 
+    total_movies DESC;
+
+
+-- 9. Mendapatkan tahun tersibuk sepanjang masa
+SELECT 
+    year,
+    COUNT(*) AS total_movies
+FROM 
+    movies 
+GROUP BY
+    year
+ORDER BY
     total_movies DESC
+LIMIT 1;
+
 
 
 
