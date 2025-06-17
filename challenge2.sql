@@ -5,7 +5,7 @@ FROM movies mv
 INNER JOIN movies_genres gen ON gen.movie_id = mv.id
 INNER JOIN movies_directors md ON md.movie_id = mv.id
 INNER JOIN directors dir ON dir.id = md.director_id
-LIMIT 5;
+LIMIT 50;
 
 
 
