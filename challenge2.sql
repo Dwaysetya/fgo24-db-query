@@ -8,4 +8,9 @@ INNER JOIN directors dir ON dir.id = md.director_id
 LIMIT 50;
 
 
-
+-- 5. Melakukan join movie dan roles berdasarkan table actors.
+SELECT m.id AS movie_id, m.name AS movie_title, m.year, a.first_name AS actor_first_name, a.last_name AS actor_last_name, r.role AS character_name
+FROM movies m
+JOIN roles r ON r.movie_id = m.id
+JOIN actors a ON a.id = r.actor_id
+LIMIT 50;
